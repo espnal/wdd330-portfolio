@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Week 1
+    </h1>
+    <h2>Notes:</h2>
+    <p>Something that I know I can use in the future is to use set and get items from the localStorage as shown in the example below.<br> <strong>Storage.getItem():</strong> returns the value of a key.<br> <strong>Storage.setItem():</strong> is for when
+        we want to designate a key and a value or reuse a key and update the previous value.</p>
+    <p> function loadStory(){<br> var storyName = document.getElementById(“name_input”).value<br> var storyHTML = <strong>localStorage.getItem</strong>(storyName)<br> document.getElementById(“story_editor”).value = storyHTML<br> }
+        <br> function saveStory(){<br> var storyName = document.getElementById(“name_input”).value<br> var storyHTML = document.getElementById(“story_editor”).value<br> <strong>localStorage.setItem</strong>(storyName, storyHTML)<br> }
+    </p>
+    <h2>Question: </h2>
+    <p>According to what I have researched and read localstorege is very useful mainly when you want to save information in a quick way or as a test, at the same time I have heard that it is dangerous to use it in real projects. <strong>How do I know if it is a
+        good time to use LocalStorege in a project or job?</strong></p>
+</body>
+
+</html>
