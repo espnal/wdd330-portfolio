@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script>
+        const div = document.querySelector("#content");
+
+        const button2 = document.querySelector(".button2");
+        const button = document.querySelector(".button");
+
+
+
+
+
+
+        function readCont() {
+            const input = document.querySelector('.input');
+            const div = document.querySelector("#content");
+            let y = input.value;
+            div.innerHTML = y
+
+            function addNum(n) {
+                const div = document.querySelector("#content");
+                x = 0
+                for (var i = 0; i <= n; i++) {
+                    x += i
+                }
+                return x
+            }
+            let final = addNum(y)
+            return div.innerHTML = final
+        }
+
+        function addInput() {
+            const div2 = document.querySelector("#content2");
+            const input2 = document.querySelector(".input2").value;
+            const input1 = document.querySelector(".input").value;
+            let operation = parseInt(input1) + parseInt(input2)
+            return div2.innerHTML = operation
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Enter numbers</h2>
+    <input class="input" type="numbers">
+    <button class="button" onclick="readCont()">Enter</button>
+    <input class="input2" type="numbers">
+    <button class="button2" onclick="addInput()">Enter</button>
+    <div id="content">
+    </div>
+    <div id="content2">
+    </div>
+
+
+
+</body>
+
+</html>
