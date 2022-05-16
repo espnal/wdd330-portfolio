@@ -17,7 +17,12 @@
         how from an object you can get specific data with the following statement: <br><br> const birthdate = inventors.sort(function(a, b) { <br> if(a.year
         < b.year) {<br> return -1; }<br> else { return 1; } });<br> console.log(birthdate );<br> <br> the same result is obtained with this one too: <br> const birthdate = inventors.sort((a, b)=> (a.year
             < b.year) ? 1 : -1)</p><br>
-                <p></p>
+                <p>Here's an example of exercise with "This": <br><br> let fruits = { name: "apple", color: "red" };<br> let vegetables = { name: "brocoli", color: "green" };<br><br> function type() {<br> console.log(`${this.color} ${this.name} `);<br> }
+                    <br><br> fruits.f = type;<br> vegetables.f = type;<br><br> fruits.f();
+
+                    <br> vegetables.f();
+                    <br>
+                </p>
                 <h2>Question:</h2>
                 <p>There's no question so far
                 </p>
