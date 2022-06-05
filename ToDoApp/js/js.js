@@ -78,31 +78,31 @@ function crossOutList() {
 }
 
 
-// function filterToDos(e) {
-//     const todos = ultaskCont.childNodes;
-//     todos.forEach(function(todo) {
-//         switch (e.currentTarget.value) {
-//             case "all":
-//                 todo.style.display = "flex";
-//                 break;
-//             case "completed":
-//                 if (todo.classList == "completed") {
-//                     todo.style.display = "flex";
-//                 } else {
-//                     todo.style.display = "none";
-//                 }
-//                 break
-//             case "active":
-//                 if (!todo.classList == "completed") {
-//                     todo.style.display = "flex";
-//                 } else {
-//                     todo.style.display = "none";
-//                 }
-//                 break
-//         }
-//     });
+function filterToDos(e) {
+    const todos = ultaskCont.childNodes;
+    todos.forEach(function(todo) {
+        switch (e.Target.value) {
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if (todo.classList == "completed") {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break
+            case "active":
+                if (!todo.classList == "completed") {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break
+        }
+    });
 
-// }
+}
 
 function addNewTodo(e) {
     const todo = { id: Date.now(), content: input.value, completed: false };
