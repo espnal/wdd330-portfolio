@@ -69,7 +69,7 @@ p {
     font-size: 1.2em;
 }
 
-i {
+.btn-delete i {
     pointer-events: none;
     color: salmon;
 }
