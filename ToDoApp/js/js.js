@@ -7,12 +7,7 @@ const empty = document.querySelector(".empty");
 const ultaskCont = document.querySelector(".ul");
 const filterTodo = document.querySelector(".todofilter");
 
-// const buttonActive = document.querySelector("#active").onclick = applyFilters;
-// const buttonCompleted = document.querySelector("#completed").onclick = applyFilters;;
-// const buttonAll = document.querySelector("#all").onclick = applyFilters;
-
-// const container = document.querySelector(".container");
-// filterTodo.addEventListener("click", filterToDos);
+filterTodo.addEventListener("change", filterToDos)
 
 button.addEventListener("click", (e) => {
     e.preventDefault();
@@ -23,26 +18,35 @@ loadTodos();
 
 function createList(todo) {
     const taks = todo.content;
+    let list;
     if (taks !== "") {
-        const list = document.createElement("li");
-        list.setAttribute("id", "normal");
+        list = document.createElement("li");
+        // list.setAttribute("id", "normal");
+        list.setAttribute("id", todo.id)
         const p = document.createElement("p");
         p.textContent = taks;
-        list.appendChild(crossOutList())
+
+        const check = crossOutList()
+
+        if (todo.completed) {
+            p.style.textDecoration = 'line-through'
+            check.checked = true
+            list.classList.add('completed')
+        }
+        list.appendChild(check)
         list.appendChild(p);
         list.appendChild(addDeleteBtn())
-        ultaskCont.appendChild(list)
 
         input.value = "";
         empty.style.display = "none";
     }
-    return ultaskCont
+    return list
 }
 
 function addDeleteBtn() {
     const deleteBtn = document.createElement("button");
 
-    deleteBtn.textContent = "X";
+    deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
     deleteBtn.className = "btn-delete";
 
 
@@ -55,9 +59,22 @@ function addDeleteBtn() {
         if (items.length === 0) {
             empty.style.display = "block";
         }
+        lSdeleteBtn(item)
     });
 
     return deleteBtn;
+}
+
+function lSdeleteBtn(item) {
+    const id = item.id
+    const todos = ls.getTodoList()
+    todos.forEach(todo => {
+        if (todo.id == id) {
+            let x = todos.indexOf(todo);
+            todos.splice(x, 1)
+        };
+    })
+    ls.saveList(todos)
 }
 
 function crossOutList() {
@@ -67,12 +84,16 @@ function crossOutList() {
     check.type = "checkbox";
     check.className = "check"
 
-
     check.addEventListener("change", (e) => {
         const list = e.target.parentElement;
-        list.classList.toggle("completed");
         const item = e.target.parentElement.childNodes[1];
         item.style.textDecoration = check.checked ? 'line-through' : 'none';
+        const id = list.id
+        const todos = ls.getTodoList()
+        todos.forEach(todo => {
+            if (todo.id == id) todo.completed = !todo.completed
+        })
+        ls.saveList(todos)
     })
     return check;
 }
@@ -81,8 +102,9 @@ function crossOutList() {
 function filterToDos(e) {
     const todos = ultaskCont.childNodes;
     todos.forEach(function(todo) {
-        switch (e.Target.value) {
+        switch (e.target.value) {
             case "all":
+                if (todo.length > 0);
                 todo.style.display = "flex";
                 break;
             case "completed":
@@ -93,7 +115,7 @@ function filterToDos(e) {
                 }
                 break
             case "active":
-                if (!todo.classList == "completed") {
+                if (todo.classList != "completed") {
                     todo.style.display = "flex";
                 } else {
                     todo.style.display = "none";
@@ -107,34 +129,19 @@ function filterToDos(e) {
 function addNewTodo(e) {
     const todo = { id: Date.now(), content: input.value, completed: false };
     input.value = " ";
-    const todoItem = createList(todo);
-    ls.saveTodo(todoItem)
+    ls.saveTodo(todo)
     loadTodos()
 }
 
 function addList(todo) {
-    document.querySelector(".ul").appendChild(todo);
+    ultaskCont.appendChild(todo);
 }
 
 function loadTodos() {
+    ultaskCont.innerHTML = '';
     const todoList = ls.getTodoList();
     todoList.forEach(todo => {
         const el = createList(todo)
         addList(el)
     })
 }
-
-
-// function applyFilters(e) {
-//     document.querySelector('.ul').innerHTML = " ";
-//     let filterToDos = [];
-//     const allTodos = ls.getTodoList();
-
-//     if (e.currentTarget.id == "active") {
-//         filterToDos = utils.activeFilter(allTodos)
-//     }
-//     filterToDos.forEach(todo => {
-//         const el = createElement(todo)
-//         createList(el)
-//     })
-// }

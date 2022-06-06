@@ -17,8 +17,12 @@ function saveTodo(todo) {
     localStorage.setItem(TODO_LIST, JSON.stringify(todoList))
 }
 
+function saveList(todos) {
+    localStorage.setItem(TODO_LIST, JSON.stringify(todos))
+}
 
 export default {
     getTodoList,
     saveTodo,
+    saveList
 }

@@ -40,7 +40,7 @@ ul li {
     list-style: none;
 }
 
-#normal {
+li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,14 +60,18 @@ p {
 .btn-delete {
     margin-left: auto;
     border: none;
-    background-color: #920022;
-    color: white;
+    color: transparent;
     font-weight: bold;
     padding: 5px 10px;
     outline: none;
     border-radius: 5px;
     width: auto;
     font-size: 1.2em;
+}
+
+i {
+    pointer-events: none;
+    color: salmon;
 }
 
 li input[type="checkbox"] {
@@ -133,4 +137,13 @@ select {
     padding: 3px;
     pointer-events: none;
     background-color: rgba(39, 39, 39, 0.445);
+}
+
+@media only screen and (max-width: 615px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .container {
+        width: 300px;
+    }
 }
