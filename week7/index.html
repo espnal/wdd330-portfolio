@@ -10,8 +10,34 @@
 
 <body>
     <h1>
-        Week 1
+        Week 7
     </h1>
+    <h2>Notas:</h2>
+    <p>Something that caught my attention and I can say that it will be very useful in the future is that we can use the objects "Headers", Request and Response to build a typical example that sets the URL, Request and Headers before calling the fetch()
+        method: const url = 'https:example.com/data';<br> const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })<br> const request = (url,{<br> headers: headers<br> })
+        <br><br> fetch(request)
+
+        <br> .then( function(response) {<br> if(response.ok) {<br> return response;<br> }
+        <br> throw Error(response.statusText);<br> })
+        <br> .then( response => // do something with response )<br> .catch( error => console.log('There was an error!') ) ) <br>
+    </p>
+    <p>
+        Something that I didn't know before but now I know that I can apply are the recursive functions that can invoke themselves inside until a certain condition is met, the most common example is with factoring since it is a more interactive process:<br>
+        <br><br> function factorial(n) {<br> if (n === 0) {<br> return 1;<br> } else {<br> return n * factorial(n - 1);<br> }
+        <br> }
+        <br>
+    </p>
+    <p>I also learned the usefulness of promises which is created with the "promise" constructor, it receives two functions as arguments that can be used to perform operations one is called if the process is successful and the other if it fails. const promise
+        = new Promise( (resolve, reject) => {<br>
+        <br><br> if (success) {<br> resolve(value);
+        <br> } else {<br> reject(error);
+        <br> }
+        <br> });
+        <br>
+    </p>
+    <h2>Question:</h2>
+    <p>I don't have questions'
+    </p>
 </body>
 
 </html>

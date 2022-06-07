@@ -69,7 +69,7 @@ function lSdeleteBtn(item) {
     const id = item.id
     const todos = ls.getTodoList()
     todos.forEach(todo => {
-        if (todo.id == id) {
+        if (todo.id == id || todo.id.length == 0) {
             let x = todos.indexOf(todo);
             todos.splice(x, 1)
         };
