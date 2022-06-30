@@ -10,8 +10,42 @@
 
 <body>
     <h1>
-        Week 1
+        Week 10
     </h1>
+    <p>In studying more about fetch, I learned how to make the code look cleaner and run faster and more efficiently by using asyc and await inside the same fuction example: <br>const url=https:// jsonplaceholder.typicode.com/todos/1`';<br> fetch(url)
+        <br> .then((res)=>{
+        <br> return res.json();<br> }) then((data)=>{
+        <br> console.log(data);
+        <br> }) .catch((err)=>{
+        <br> console.error(error);
+        <br> });
+        <br> to achieve this:<br> const LoadData=async()=>{<br> const url=<br> const res=await fetch(url);<br> const data=await res.json();<br> console.Log(data);
+        <br> }; LoadData();
+        <br> "`` https:// jsonplaceholder.typicode.com/todos/1`;<br> also the importance of using Try to handle errors:<br> const LoadData=async()=>{<br> try{
+        <br> }
+        <br> };
+        <br> const url="https:// jsonplaceholder.typicode.com/todoasas/1`;<br> const res=await fetch(url);<br> console.log(res.ok)
+        <br> const data=await res.json();<br> console.log(data);
+        <br> }catch(err){
+        <br> console.error(err)
+
+        <br> LoadData(): <br>
+
+    </p>
+    <p>I wanted to share what was the best for me regarding form validation</p>
+    <p>
+        <form>
+            <label for="mail">I would like you to provide me with an e-mail address:</label>
+            <input type="email" id="mail" name="mail">
+            <button>Submit</button>
+            <form>
+
+                And add the following JavaScript to the page:<br> const email = document.getElementById("mail");<br> email.addEventListener("input", function (event) {<br> if (email.validity.typeMismatch) {<br> email.setCustomValidity("I am expecting
+                an e-mail address!");<br> email.reportValidity();
+                <br> } else {<br> email.setCustomValidity("");
+                <br> }
+                <br> });
+    </p>
 </body>
 
 </html>

@@ -19,7 +19,8 @@ loadTodos();
 function createList(todo) {
     const taks = todo.content;
     let list;
-    if (taks !== "") {
+
+    if (taks.length !== 0) {
         list = document.createElement("li");
         // list.setAttribute("id", "normal");
         list.setAttribute("id", todo.id)
@@ -92,6 +93,7 @@ function crossOutList() {
         const todos = ls.getTodoList()
         todos.forEach(todo => {
             if (todo.id == id) todo.completed = !todo.completed
+
         })
         ls.saveList(todos)
     })
@@ -127,13 +129,19 @@ function filterToDos(e) {
 }
 
 function addNewTodo(e) {
-    const todo = { id: Date.now(), content: input.value, completed: false };
-    input.value = " ";
-    ls.saveTodo(todo)
-    loadTodos()
+    let task = input.value
+    if (task.length !== 0) {
+        const todo = { id: Date.now(), content: input.value, completed: false };
+        input.value = " ";
+        ls.saveTodo(todo)
+        loadTodos()
+    }
+
+
 }
 
 function addList(todo) {
+
     ultaskCont.appendChild(todo);
 }
 
@@ -144,4 +152,5 @@ function loadTodos() {
         const el = createList(todo)
         addList(el)
     })
+    console.log(todoList)
 }
