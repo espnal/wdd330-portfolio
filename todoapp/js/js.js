@@ -13,10 +13,13 @@ button.addEventListener("click", (e) => {
     e.preventDefault();
     addNewTodo();
 
+
+
 });
 loadTodos();
 
 function createList(todo) {
+
     const taks = todo.content;
     let list;
 
@@ -40,6 +43,8 @@ function createList(todo) {
 
         input.value = "";
         empty.style.display = "none";
+        input.focus();
+
     }
     return list
 }
@@ -92,9 +97,17 @@ function crossOutList() {
         const id = list.id
         const todos = ls.getTodoList()
         todos.forEach(todo => {
-            if (todo.id == id) todo.completed = !todo.completed
-
+            if (todo.id == id) {
+                todo.completed = !todo.completed
+                if (todo.completed && list.className !== 'completed') {
+                    check.checked = true
+                    list.classList.add('completed')
+                } else {
+                    list.classList.remove('completed')
+                }
+            }
         })
+
         ls.saveList(todos)
     })
     return check;
@@ -102,6 +115,9 @@ function crossOutList() {
 
 
 function filterToDos(e) {
+    // debugger
+    // const todos = ls.getTodoList()
+
     const todos = ultaskCont.childNodes;
     todos.forEach(function(todo) {
         switch (e.target.value) {
@@ -149,8 +165,8 @@ function loadTodos() {
     ultaskCont.innerHTML = '';
     const todoList = ls.getTodoList();
     todoList.forEach(todo => {
-        const el = createList(todo)
-        addList(el)
-    })
-    console.log(todoList)
+            const el = createList(todo)
+            addList(el)
+        })
+        // console.log(todoList)
 }
