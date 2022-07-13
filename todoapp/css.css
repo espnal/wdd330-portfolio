@@ -76,7 +76,6 @@ p {
 
 li input[type="checkbox"] {
     margin-right: auto;
-    border: none;
     color: #000;
     margin: 10px 20px 10px 10px;
 }
@@ -106,6 +105,9 @@ li input[type="checkbox"] {
 .task-text {
     width: 75%;
     height: 30px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
 }
 
 select {

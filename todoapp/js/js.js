@@ -7,14 +7,18 @@ const empty = document.querySelector(".empty");
 const ultaskCont = document.querySelector(".ul");
 const filterTodo = document.querySelector(".todofilter");
 
+button.addEventListener("keydown", (e) => {
+    if (13 == e.keyCode) {
+        e.preventDefault();
+        addNewTodo();
+    }
+
+});
 filterTodo.addEventListener("change", filterToDos)
 
 button.addEventListener("click", (e) => {
     e.preventDefault();
     addNewTodo();
-
-
-
 });
 loadTodos();
 

@@ -41,8 +41,12 @@ const links = [{
         url: "week10/index.html"
     },
     {
-        label: "Week11 work",
+        label: "Authentication with JWT",
         url: "week11/index.html"
+    },
+    {
+        label: "Code Challenge II - Pokedex",
+        url: "Pokedex/index.html"
     }
 ];
 
