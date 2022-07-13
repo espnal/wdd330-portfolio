@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/small.css">
+
+    <title>Pokemon Table</title>
+    <script src="https://kit.fontawesome.com/939c9d406a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-div">
+            <h1>Pokedex</h1>
+            <p id="descrp">Search here to know even more pokemos</p>
+            <div class="fixer">
+                <input type="text" id="input" placeholder=" Search for a Pokemon" autofocus>
+                <button class="plus"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="h-icon"><i class="fa-solid fa-clock-rotate-left"></i></button>
+            </div>
+            <select name="select" id="select"></select>
+        </div>
+    </header>
+    <main id="main">
+        <div class="content-all">
+            <div class="main-content">
+
+
+                <div class="img"></div>
+                <div class="content-inf">
+                    <h3 class="msg"></h3>
+                </div>
+            </div>
+            <div id="history">
+                <div class="fixer">
+                    <h2 style="margin-left: 1em;">Your last 10 recent searches</h2>
+                    <button class="clean"><i class="fa-solid fa-ban"></i></button>
+                </div>
+                <ul class="list-container">
+                </ul>
+            </div>
+        </div>
+        </div>
+    </main>
+    <script type="module" src="js/js.js"></script>
+</body>
+
+</html>
