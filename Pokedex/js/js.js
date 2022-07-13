@@ -19,7 +19,7 @@ function toggleHistory() {
 
 h_icon.addEventListener("click", () => {
     toggleHistory()
-    loadHistory()
+
 })
 
 plus.addEventListener("click", (e) => {
@@ -65,6 +65,7 @@ function showList() {
             select.appendChild(options);
         })
     })
+    loadHistory()
 }
 
 function capturePokemonUrl(e) {
@@ -104,6 +105,7 @@ function capturePokemonUrl(e) {
             })
         }
     })
+
 }
 
 function displayResults(url) {
