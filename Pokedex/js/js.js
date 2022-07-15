@@ -1,4 +1,5 @@
 import ls from './localsrg.js';
+//DOM Labels variables
 const select = document.getElementById("select");
 const input = document.getElementById("input");
 const plus = document.querySelector(".plus");
@@ -6,37 +7,32 @@ const msg = document.querySelector(".msg");
 const h_icon = document.querySelector(".h-icon");
 const clean = document.querySelector(".clean");
 
+//URL variables
 const url = "https://pokeapi.co/api/v2/pokemon";
-// input.addEventListener("input", (e) => {
 
-// })
-
-function toggleHistory() {
-    const history = document.getElementById("history");
-    history.classList.toggle("present")
-}
 // clean.onclick = cleanHistory;
 
-h_icon.addEventListener("click", () => {
-    toggleHistory()
+//With a click calls history Toggle function
+h_icon.addEventListener("click", (e) => {
+        toggleHistory()
 
-})
-
+    })
+    //With a click calls the function capturePokemonUrl and give style of inherit to the main content.
 plus.addEventListener("click", (e) => {
-    if (input.value.length > 0) {
-        const mainContent = document.querySelector(".main-content")
-        mainContent.style.display = "inherit";
-        capturePokemonUrl(e)
-    }
-})
-
+        if (input.value.length > 0) {
+            const mainContent = document.querySelector(".main-content")
+            mainContent.style.display = "inherit";
+            capturePokemonUrl(e)
+        }
+    })
+    // Scrolling through the options calls the function capturePokemonUrl and give style of inherit to the main content.
 select.addEventListener("change", (e) => {
     const mainContent = document.querySelector(".main-content")
     mainContent.style.display = "inherit";
     capturePokemonUrl(e)
 });
 
-
+// Asyn and await function to await the data of the current url
 async function getJsonObject(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -45,7 +41,7 @@ async function getJsonObject(url) {
         return response.json();
     }
 }
-
+//This function is use to transport the URL and to reused with any other function
 function getData(url) {
     return getJsonObject(url);
 }
@@ -69,6 +65,7 @@ function showList() {
 }
 
 function capturePokemonUrl(e) {
+
     let img = document.querySelector('.img');
     img.innerHTML = "";
     let inf = document.querySelector('.content-inf');
@@ -76,6 +73,12 @@ function capturePokemonUrl(e) {
     const msg = document.createElement("h3")
     msg.className = "msg";
     inf.appendChild(msg);
+
+    const mainContent = document.querySelector(".main-content");
+    if (history.className !== "present") {
+        mainContent.style.marginRight = "auto";
+        mainContent.style.marginLeft = "auto";
+    }
     getData(url).then(function(data) {
         let numberOfTotalPokemons = data.count
         let currentName = e.target.value;
@@ -86,7 +89,7 @@ function capturePokemonUrl(e) {
                 if (currentName === data.results[counter].name) {
                     let x = data.results[counter].url;
                     ls.savePokemon(currentName)
-                    displayResults(x);
+                    displayResults(x, img, inf);
                 }
             }
         } else if (input.value) {
@@ -95,7 +98,7 @@ function capturePokemonUrl(e) {
                     if (input.value.toLowerCase() === newData.results[counter].name) {
                         let x = newData.results[counter].url;
                         ls.savePokemon(input.value)
-                        displayResults(x);
+                        displayResults(x, img, inf);
                     } else {
                         let img = document.querySelector('.img');
                         img.innerHTML = `<img id="images" src="images/questionMark.png"style="width:150px; margin-left: 4.3em;margin-top: 4.3em"></img>`;
@@ -108,25 +111,28 @@ function capturePokemonUrl(e) {
 
 }
 
-function displayResults(url) {
+function displayResults(url, img, inf) {
     fetch(url)
         .then((response => response.json()))
         .then(data => {
-            buildImage(data)
-            buildInfo(data)
+
+            buildImage(data, img);
+            buildInfo(data, inf);
+            moreContentInfo(data);
         })
         .catch((error) => {
             throw (error)
         })
 }
 
-function buildImage(data) {
-    let img = document.querySelector('.img');
-    img.innerHTML = `<img id="images" src="${data.sprites.other.home.front_default}"></img>`;
+function buildImage(data, img) {
+    // let img = document.querySelector('.img');
+    img.innerHTML = `<img src="${data.sprites.other.home.front_default}"></img>`;
+    // console.log(data);
 }
 
-function buildInfo(data) {
-    let inf = document.querySelector('.content-inf');
+function buildInfo(data, inf) {
+    // let inf = document.querySelector('.content-inf');
     let pokeName = data.name.toUpperCase();
     if (data.types.length > 1) {
         inf.innerHTML =
@@ -134,8 +140,8 @@ function buildInfo(data) {
         <h2 class="name"> ${pokeName}</h2>
         <div class="main-inf">
         <div class="text"><p>${data.types[0].type.name} / ${data.types[1].type.name}</p><span>Type</span></div>
-        <div class="text"><p> ${data.weight}</p><span>Weight</span> </div>
-        <div class="text"><p>${data.height}</p><span>Height</span></div>
+        <div class="text"><p> ${data.weight.toFixed(1)}</p><span>Weight</span> </div>
+        <div class="text"><p>${data.height.toFixed(1)}</p><span>Height</span></div>
         </div>
         <button id="show-more">Show more</button>
     `;
@@ -145,22 +151,54 @@ function buildInfo(data) {
         <h2 class="name"> ${pokeName}</h2>
         <div class="main-inf">
         <div class="text"><p>${data.types[0].type.name}</p><span>Type</span></div>
-        <div class="text"><p> ${data.weight}</p><span>Weight</span></div>
-        <div class="text"><p>${data.height}</p><span>Height</span></div>
+        <div class="text"><p> ${data.weight.toFixed(1)}</p><span>Weight</span></div>
+        <div class="text"><p>${data.height.toFixed(1)}</p><span>Height</span></div>
         </div>
-        <button id="show-more">Show more</button>
+        <button id="show-more"><span>Show more</span><svg width="21" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg></button>
     `;
     }
 }
 
+function toggleHistory() {
+    const history = document.getElementById("history");
+    history.classList.toggle("present");
+}
+
 function loadHistory() {
-    const ul = document.querySelector(".list-container")
-    const previousPokemon = ls.loadPokemon()
+    const ul = document.querySelector(".list-container");
+    const previousPokemon = ls.loadPokemon();
     previousPokemon.forEach((pokemon) => {
         let li = document.createElement("li");
         li.textContent = `${pokemon}`
         ul.appendChild(li);
     })
+}
+
+function moreContentInfo(data) {
+    let url = data.species.url;
+    getData(url).then(function(data) {
+        let url_ = data.evolution_chain.url;
+        getData(url_).then(function(data) {
+            let middlePokemon = data.chain.evolves_to[0].species.url;
+            let babyPokemon = data.chain.species.url
+            let urlList = [middlePokemon, babyPokemon];
+            let more_inf_div = document.querySelector(".more-info");
+            urlList.map((url3) => {
+                getData(url3).then(function(data) {
+                    console.log(data)
+                        // let img = document.createElement("img");
+
+                    // more_inf_div.appendChild(img)
+                })
+
+            })
+
+            // let about = document.createElement("h2");
+            // console.log(urlList)
+        })
+    })
+
+    // console.log(url)
 }
 
 // function cleanHistory() {
