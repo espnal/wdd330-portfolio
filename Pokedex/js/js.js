@@ -84,6 +84,7 @@ function capturePokemonUrl(e) {
         let currentName = e.target.value;
         const input = document.getElementById("input");
         let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=20&limit=${numberOfTotalPokemons}`;
+        debugger
         if (currentName) {
             for (let counter = 0; counter < data.results.length; counter++) {
                 if (currentName === data.results[counter].name) {
@@ -100,10 +101,11 @@ function capturePokemonUrl(e) {
                         ls.savePokemon(input.value)
                         displayResults(x, img, inf);
                     } else {
+
                         let img = document.querySelector('.img');
                         img.innerHTML = `<img id="images" src="images/questionMark.png"style="width:140px; margin-left: 1.2em;margin-top: 4.3em"></img>`;
                         msg.textContent = "Sorry we couldn't find that Pokemon";
-                        msg.style.marginTop = "2em";
+                        msg.style.marginTop = "3em";
                     }
                 }
             })
