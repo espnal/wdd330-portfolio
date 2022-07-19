@@ -4,7 +4,6 @@
     box-sizing: border-box;
     padding: 0;
     font-family: 'Cairo', sans-serif;
-    transition: 0.2s;
 }
 
 body {
@@ -101,8 +100,6 @@ main {
     box-shadow: 0px 0px 7px 1px #6d6d6d;
     min-width: 400px;
     height: 662px;
-    /* Making the element positioned relative to the nearest positioned ancestor (instead of positioned
-relative to the viewport, like fixed). */
 }
 
 .main-inf {
@@ -137,7 +134,6 @@ select {
     color: rgb(255, 255, 255);
     outline: none;
     border-radius: 3px;
-    transition: 0.3s;
     font-weight: 500;
 }
 
@@ -165,7 +161,7 @@ select {
     width: 375px;
     /* margin-bottom: 15px; */
     box-shadow: 0 0 8px rgb(0 0 0 / 30%);
-    height: 320px;
+    height: auto;
     position: absolute;
     top: 560px;
 }
@@ -303,4 +299,24 @@ select {
     background-color: #548235;
     margin-left: auto;
     margin-right: auto;
+}
+
+#more-inf {
+    display: none;
+    transition: 0.3s;
+}
+
+#more-inf.present {
+    display: block;
+    background-color: #dfdfdf;
+    margin-top: 1em;
+    border-radius: 10px;
+    padding: 1em;
+    line-height: 27px;
+    text-align: justify;
+    transition-duration: 1s;
+}
+
+#more-inf h2 {
+    margin-bottom: .5em;
 }

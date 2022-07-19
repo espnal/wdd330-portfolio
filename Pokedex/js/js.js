@@ -101,8 +101,9 @@ function capturePokemonUrl(e) {
                         displayResults(x, img, inf);
                     } else {
                         let img = document.querySelector('.img');
-                        img.innerHTML = `<img id="images" src="images/questionMark.png"style="width:150px; margin-left: 4.3em;margin-top: 4.3em"></img>`;
+                        img.innerHTML = `<img id="images" src="images/questionMark.png"style="width:140px; margin-left: 1.2em;margin-top: 4.3em"></img>`;
                         msg.textContent = "Sorry we couldn't find that Pokemon";
+                        msg.style.marginTop = "2em";
                     }
                 }
             })
@@ -111,6 +112,7 @@ function capturePokemonUrl(e) {
 
 }
 
+
 function displayResults(url, img, inf) {
     fetch(url)
         .then((response => response.json()))
@@ -118,7 +120,9 @@ function displayResults(url, img, inf) {
 
             buildImage(data, img);
             buildInfo(data, inf);
-            moreContentInfo(data);
+            // debugger
+
+
         })
         .catch((error) => {
             throw (error)
@@ -132,7 +136,6 @@ function buildImage(data, img) {
 }
 
 function buildInfo(data, inf) {
-    // let inf = document.querySelector('.content-inf');
     let pokeName = data.name.toUpperCase();
     if (data.types.length > 1) {
         inf.innerHTML =
@@ -144,6 +147,7 @@ function buildInfo(data, inf) {
         <div class="text"><p>${data.height.toFixed(1)}</p><span>Height</span></div>
         </div>
         <button id="show-more">Show more</button>
+        <div id="more-inf"></div>
     `;
     } else {
         inf.innerHTML =
@@ -155,13 +159,31 @@ function buildInfo(data, inf) {
         <div class="text"><p>${data.height.toFixed(1)}</p><span>Height</span></div>
         </div>
         <button id="show-more"><span>Show more</span><svg width="21" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg></button>
-    `;
+        <div id="more-inf"></div>
+        `;
     }
+    const showmore = document.getElementById("show-more");
+    showmore.addEventListener("click", (e) => {
+        toggleShow(data)
+    })
+
 }
 
 function toggleHistory() {
     const history = document.getElementById("history");
     history.classList.toggle("present");
+
+}
+
+function toggleShow(data) {
+    const more_inf = document.getElementById("more-inf");
+    more_inf.classList.toggle("present");
+    moreContentInfo(data)
+    const mainContent = document.querySelector(".main-content");
+    if (more_inf.className == "present") {
+        mainContent.style.height = "860px";
+    } else { mainContent.style.height = "662px" }
+
 }
 
 function loadHistory() {
@@ -177,28 +199,33 @@ function loadHistory() {
 function moreContentInfo(data) {
     let url = data.species.url;
     getData(url).then(function(data) {
-        let url_ = data.evolution_chain.url;
-        getData(url_).then(function(data) {
-            let middlePokemon = data.chain.evolves_to[0].species.url;
-            let babyPokemon = data.chain.species.url
-            let urlList = [middlePokemon, babyPokemon];
-            let more_inf_div = document.querySelector(".more-info");
-            urlList.map((url3) => {
-                getData(url3).then(function(data) {
-                    console.log(data)
-                        // let img = document.createElement("img");
+        // 
+        let x = data.flavor_text_entries
+        let en_text = []
+        for (let i = 0; i < x.length; i++) {
+            if (x[i].language.name == "en") {
+                en_text.push(x[i])
+            }
+        }
+        let random = Math.floor(Math.random() * en_text.length);
+        let text_chain = en_text[random].flavor_text;
 
-                    // more_inf_div.appendChild(img)
-                })
 
-            })
+        const more_inf_div = document.querySelector("#more-inf");
+        let about = document.createElement("h2");
+        let p = document.createElement("p");
+        about.textContent = `About ${data.name}`;
+        p.textContent = text_chain;
+        if (more_inf_div.childNodes.length == 0) {
+            more_inf_div.appendChild(about);
+            more_inf_div.appendChild(p);
 
-            // let about = document.createElement("h2");
-            // console.log(urlList)
-        })
+        }
+        // console.dir(more_inf_div);
+
     })
 
-    // console.log(url)
+
 }
 
 // function cleanHistory() {
