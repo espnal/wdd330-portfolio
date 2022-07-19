@@ -146,7 +146,7 @@ function buildInfo(data, inf) {
         <div class="text"><p> ${data.weight.toFixed(1)}</p><span>Weight</span> </div>
         <div class="text"><p>${data.height.toFixed(1)}</p><span>Height</span></div>
         </div>
-        <button id="show-more">Show more</button>
+        <button id="show-more"><span>Show more</span><svg width="21" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg></button>
         <div id="more-inf"></div>
     `;
     } else {
@@ -177,12 +177,28 @@ function toggleHistory() {
 
 function toggleShow(data) {
     const more_inf = document.getElementById("more-inf");
-    more_inf.classList.toggle("present");
-    moreContentInfo(data)
+    const showmore = document.getElementById("show-more");
     const mainContent = document.querySelector(".main-content");
+    more_inf.classList.toggle("present");
+    showmore.classList.toggle("present");
+    moreContentInfo(data)
+
     if (more_inf.className == "present") {
         mainContent.style.height = "860px";
-    } else { mainContent.style.height = "662px" }
+        // if(showmore.className == "present"){}
+        // let css = '#show-more svg {transform: translateX(5px) rotate(90deg)}';
+        // let style = document.createElement('style');
+
+        // if (style.styleSheet) {
+        //     style.styleSheet.cssText = css;
+        // } else {
+        //     style.appendChild(document.createTextNode(css));
+        // }
+
+        // document.getElementsByTagName('head')[0].appendChild(style);
+    } else {
+        mainContent.style.height = "662px";
+    }
 
 }
 

@@ -100,6 +100,7 @@ main {
     box-shadow: 0px 0px 7px 1px #6d6d6d;
     min-width: 400px;
     height: 662px;
+    padding-top: 1em;
 }
 
 .main-inf {
@@ -188,8 +189,8 @@ select {
 
 #show-more svg {
     margin-right: 3px;
-    transform: rotate(5deg);
-    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    /* transform: rotate(5deg); */
+    transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
     margin-left: 1rem;
     fill: white;
 }
@@ -198,9 +199,10 @@ select {
     transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-#show-more:hover svg {
+
+/* #show-more:hover svg {
     transform: translateX(5px) rotate(90deg);
-}
+} */
 
 #show-more:hover span {
     transform: translateX(7px);
@@ -208,6 +210,10 @@ select {
 
 #show-more:hover {
     background-color: #41642a;
+}
+
+#show-more.present svg {
+    transform: translateX(5px) rotate(90deg);
 }
 
 #history {
@@ -294,11 +300,37 @@ select {
     height: 320px;
     width: 320px;
     border-radius: 100%;
-    /* border: 1px solid #548235; */
     margin-top: 20px;
     background-color: #548235;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+}
+
+.circle::after {
+    animation: pulse 1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.4;
+    }
+}
+
+.circle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #548235;
+    border-radius: 100%;
+    z-index: -1;
 }
 
 #more-inf {
