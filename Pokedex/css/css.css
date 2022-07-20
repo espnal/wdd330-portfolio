@@ -226,11 +226,6 @@ select {
     border-radius: 5px;
 }
 
-
-/* #history li {
-
-} */
-
 #history.present {
     display: block;
 }
