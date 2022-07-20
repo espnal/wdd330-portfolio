@@ -5,27 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/css.css">
+    <title>Week3</title>
 </head>
 
 <body>
     <h1>
         Week 3
     </h1>
-    <h2>Notas:</h2>
-    <p>Something that I really liked, what I learned this week is how you can simplify the syntax in a more summarized way to consume less resources, at first it is confusing but it is a matter of time to adapt and understand everything a clear example is:
-        how from an object you can get specific data with the following statement: <br><br> const birthdate = inventors.sort(function(a, b) { <br> if(a.year
-        < b.year) {<br> return -1; }<br> else { return 1; } });<br> console.log(birthdate );<br> <br> the same result is obtained with this one too: <br> const birthdate = inventors.sort((a, b)=> (a.year
-            < b.year) ? 1 : -1)</p><br>
-                <p>Here's an example of exercise with "This": <br><br> let fruits = { name: "apple", color: "red" };<br> let vegetables = { name: "brocoli", color: "green" };<br><br> function type() {<br> console.log(`${this.color} ${this.name} `);<br> }
-                    <br><br> fruits.f = type;<br> vegetables.f = type;<br><br> fruits.f();
+    <div class="container-text">
+        <h2>Notes:</h2>
+        <p>Something that I really liked, what I learned this week is how you can simplify the syntax in a more summarized way to consume less resources, at first it is confusing but it is a matter of time to adapt and understand everything a clear example
+            is: how from an object you can get specific data with the following statement: <br><br> const birthdate = inventors.sort(function(a, b) { <br> if(a.year
+            < b.year) {<br> return -1; }<br> else { return 1; } });<br> console.log(birthdate );<br> <br> the same result is obtained with this one too: <br> const birthdate = inventors.sort((a, b)=> (a.year
+                < b.year) ? 1 : -1)</p><br>
+                    <p>Here's an example of exercise with "This": <br><br> let fruits = { name: "apple", color: "red" };<br> let vegetables = { name: "brocoli", color: "green" };<br><br> function type() {<br> console.log(`${this.color} ${this.name} `);<br>                        }
+                        <br><br> fruits.f = type;<br> vegetables.f = type;<br><br> fruits.f();
 
-                    <br> vegetables.f();
-                    <br>
-                </p>
-                <h2>Question:</h2>
-                <p>There's no question so far
-                </p>
+                        <br> vegetables.f();
+                        <br>
+                    </p>
+                    <h2>Question:</h2>
+                    <p>There's no question so far
+                    </p>
+    </div>
 </body>
 
 </html>

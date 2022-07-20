@@ -5,30 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/css.css">
+    <title>Week8</title>
 </head>
 
 <body>
     <h1>
         Week 8
     </h1>
-    <p>transform use translate properies to basically subtitude the position (absolute, relative), in other work we can use both in our styling depending the scale of the feature or design, transform has a bigger scope that allows us to make more complex
-        designs. something to keep in mind is that this property require vendor prefixing for IE9, <br> Android up to 4.4.3, iOS8, and Blackberry 10. and is not available within a display: inline. To move up along or to the sides it use either x axes
-        or y ( translateX(), translateY()).
-        <br> The skew(x,y) function specifies a skew along the x and y axes.</p>
-    <p><strong>To apply transition to the transform property we need to know that:</strong> To support older WebKit browsers, we need to include the -webkit- prefix for all of your transition properties. and may also need to specify the -webkitprefixed
-        forms of properties. For example, you’re unable to animate transform in a browser that only understands <strong>-webkit-transform:</strong> .ad-ad2 h1 span { -webkit-transition-property: -webkit-transform; transition-property: transform; }<br><br>        some examples of a properties often use: ransition-property: transform, color; <br> transition-duration: 0.2s, 0.1s; <br> transition-timing-function: ease-out, linear;<br> transition-delay: 50ms;<br>
-    </p>
-    <p>canvas as well as other libraries of other computer programs such as python for example, helps us to make design creation more efficient. it is declared in html by means of tags establishing a width and height in a mandatory way and it is called and
-        worked in javascript.<br> canvas id="myCanva" class="myCanvas" width="200" height="200"><br> Sorry! Your browser doesn’t support Canvas.<br>
-        </canvas>
+    <div class="container-text">
+        <h2>Notes:</h2>
+        <p>transform use translate properies to basically subtitude the position (absolute, relative), in other work we can use both in our styling depending the scale of the feature or design, transform has a bigger scope that allows us to make more complex
+            designs. something to keep in mind is that this property require vendor prefixing for IE9, <br> Android up to 4.4.3, iOS8, and Blackberry 10. and is not available within a display: inline. To move up along or to the sides it use either x axes
+            or y ( translateX(), translateY()).
+            <br> The skew(x,y) function specifies a skew along the x and y axes.</p>
+        <p><strong>To apply transition to the transform property we need to know that:</strong> To support older WebKit browsers, we need to include the -webkit- prefix for all of your transition properties. and may also need to specify the -webkitprefixed
+            forms of properties. For example, you’re unable to animate transform in a browser that only understands <strong>-webkit-transform:</strong> .ad-ad2 h1 span { -webkit-transition-property: -webkit-transform; transition-property: transform; }<br><br>            some examples of a properties often use: ransition-property: transform, color; <br> transition-duration: 0.2s, 0.1s; <br> transition-timing-function: ease-out, linear;<br> transition-delay: 50ms;<br>
+        </p>
+        <p>canvas as well as other libraries of other computer programs such as python for example, helps us to make design creation more efficient. it is declared in html by means of tags establishing a width and height in a mandatory way and it is called
+            and worked in javascript.<br> canvas id="myCanva" class="myCanvas" width="200" height="200"><br> Sorry! Your browser doesn’t support Canvas.<br>
+            </canvas>
 
-        Both of these methods take the X and Y coordinates where we want to begin drawing the fill or the stroke, and the width and height of the rectangle. We’ll add the stroke and fill 10 pixels from the top and 10 pixels from the left of the canvas’s top-left
-        corner:
-        <br> var canvas = document.getElementById("myCanvas"); <br> var context = canvas.getContext("2d"); <br> context.strokeStyle = "red";<br> context.fillStyle = "rgba(0, 0, 255, 0.5)";<br> context.fillRect(10, 10, 100, 100); <br> context.strokeRect(10,
-        10, 100, 100);<br>
+            Both of these methods take the X and Y coordinates where we want to begin drawing the fill or the stroke, and the width and height of the rectangle. We’ll add the stroke and fill 10 pixels from the top and 10 pixels from the left of the canvas’s top-left
+            corner:
+            <br> var canvas = document.getElementById("myCanvas"); <br> var context = canvas.getContext("2d"); <br> context.strokeStyle = "red";<br> context.fillStyle = "rgba(0, 0, 255, 0.5)";<br> context.fillRect(10, 10, 100, 100); <br> context.strokeRect(10,
+            10, 100, 100);<br>
 
-    </p>
+        </p>
+    </div>
 </body>
 
 </html>
