@@ -46,7 +46,8 @@ function getData(url) {
     return getJsonObject(url);
 }
 
-
+//This function will add all the pokemons in the drop down section, 
+//and will call the function the loadHistory.
 function showList() {
     getData(url).then(function(data) {
         let inf = data.results
@@ -64,7 +65,17 @@ function showList() {
     loadHistory()
 }
 
+//First this function will clean any information in the img and the inf container,
+//second the main content needs to be ajusted by adding margins when the history is not added
+//it gets the values either from the drop down or the input, the the function goes a find 
+//the url of the specific pokemon and passed the value to displayResults, if any value is found then
+//the it will show a message of unsuccessful search results.
 function capturePokemonUrl(e) {
+    const mainContent = document.querySelector(".main-content");
+    if (history.className !== "present") {
+        mainContent.style.marginRight = "auto";
+        mainContent.style.marginLeft = "auto";
+    }
 
     let img = document.querySelector('.img');
     img.innerHTML = "";
@@ -74,22 +85,16 @@ function capturePokemonUrl(e) {
     msg.className = "msg";
     inf.appendChild(msg);
 
-    const mainContent = document.querySelector(".main-content");
-    if (history.className !== "present") {
-        mainContent.style.marginRight = "auto";
-        mainContent.style.marginLeft = "auto";
-    }
     getData(url).then(function(data) {
         let numberOfTotalPokemons = data.count
         let currentName = e.target.value;
         const input = document.getElementById("input");
         let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=20&limit=${numberOfTotalPokemons}`;
-        debugger
         if (currentName) {
             for (let counter = 0; counter < data.results.length; counter++) {
                 if (currentName === data.results[counter].name) {
                     let x = data.results[counter].url;
-                    ls.savePokemon(currentName)
+                    ls.savePokemon(currentName);
                     displayResults(x, img, inf);
                 }
             }
@@ -98,7 +103,7 @@ function capturePokemonUrl(e) {
                 for (let counter = 0; counter < newData.results.length; counter++) {
                     if (input.value.toLowerCase() === newData.results[counter].name) {
                         let x = newData.results[counter].url;
-                        ls.savePokemon(input.value)
+                        ls.savePokemon(input.value);
                         displayResults(x, img, inf);
                     } else {
 
@@ -114,27 +119,18 @@ function capturePokemonUrl(e) {
 
 }
 
-
+//This function will give the urls values to buildImage and
+// buildInfo for them to complete their task
 function displayResults(url, img, inf) {
-    fetch(url)
-        .then((response => response.json()))
-        .then(data => {
-
-            buildImage(data, img);
-            buildInfo(data, inf);
-            // debugger
-
-
-        })
-        .catch((error) => {
-            throw (error)
-        })
+    getData(url).then(function(newData) {
+        buildImage(newData, img);
+        buildInfo(newData, inf);
+    })
 }
 
 function buildImage(data, img) {
-    // let img = document.querySelector('.img');
     img.innerHTML = `<img src="${data.sprites.other.home.front_default}"></img>`;
-    // console.log(data);
+
 }
 
 function buildInfo(data, inf) {
@@ -166,7 +162,7 @@ function buildInfo(data, inf) {
     }
     const showmore = document.getElementById("show-more");
     showmore.addEventListener("click", (e) => {
-        toggleShow(data)
+        toggleShow(data);
     })
 
 }
@@ -183,26 +179,17 @@ function toggleShow(data) {
     const mainContent = document.querySelector(".main-content");
     more_inf.classList.toggle("present");
     showmore.classList.toggle("present");
-    moreContentInfo(data)
+    moreContentInfo(data);
 
     if (more_inf.className == "present") {
         mainContent.style.height = "860px";
-        // if(showmore.className == "present"){}
-        // let css = '#show-more svg {transform: translateX(5px) rotate(90deg)}';
-        // let style = document.createElement('style');
-
-        // if (style.styleSheet) {
-        //     style.styleSheet.cssText = css;
-        // } else {
-        //     style.appendChild(document.createTextNode(css));
-        // }
-
-        // document.getElementsByTagName('head')[0].appendChild(style);
     } else {
         mainContent.style.height = "662px";
     }
 
 }
+// This function will load and create all the pokemon 
+//in localStorage
 
 function loadHistory() {
     const ul = document.querySelector(".list-container");
@@ -213,6 +200,9 @@ function loadHistory() {
         ul.appendChild(li);
     })
 }
+//This function will filter the text provided of the specific pokemon
+//just showing the english ones, the function will show ramdomdly all the 
+//notes availables.
 
 function moreContentInfo(data) {
     let url = data.species.url;
@@ -237,13 +227,8 @@ function moreContentInfo(data) {
         if (more_inf_div.childNodes.length == 0) {
             more_inf_div.appendChild(about);
             more_inf_div.appendChild(p);
-
         }
-        // console.dir(more_inf_div);
-
     })
-
-
 }
 
 // function cleanHistory() {
