@@ -67,7 +67,7 @@ function showList() {
 
 //First this function will clean any information in the img and the inf container,
 //second the main content needs to be ajusted by adding margins when the history is not added
-//it gets the values either from the drop down or the input, the the function goes a find 
+//it gets the values either from the drop down or the input,  the function goes a find 
 //the url of the specific pokemon and passed the value to displayResults, if any value is found then
 //the it will show a message of unsuccessful search results.
 function capturePokemonUrl(e) {
@@ -201,7 +201,7 @@ function loadHistory() {
     })
 }
 //This function will filter the text provided of the specific pokemon
-//just showing the english ones, the function will show ramdomdly all the 
+//just showing the english ones, the function will show ramdomly all the 
 //notes availables.
 
 function moreContentInfo(data) {
